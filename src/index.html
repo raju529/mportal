@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="mportal">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link data-require="bootstrap-css@3.3.6" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <link href="styles/main.css" rel="stylesheet"/>
+    <script data-require="jquery@*" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script data-require="angular.js@1.4.8" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular.js"></script>
+    <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script data-require="ui-router@*" data-semver="0.2.15" src="https://cdn.rawgit.com/angular-ui/ui-router/805e69bae319e922e4d3265b7ef565058aaff850/release/angular-ui-router.js"></script>
+    <script data-require="lodash.js@*" data-semver="3.10.0" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.0/lodash.js"></script>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home"><img src="Images/processmaker.logo.png" class="img-responsive"
+                                                   style="width: 80px;
+                        height: 40px;" /></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul ng-hide="hideMenu" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false"><span class="glyphicon glyphicon-align-justify"></span></a>
+                        <!--Menu<span-->
+                            <!--class="caret"></span>-->
+                        <ul class="dropdown-menu">
+                            <li><a ui-sref="myActions">My Actions</a></li>
+                            <li><a ui-sref="newESAE">Create New eSAE</a></li>
+                            <li><a ui-sref="myDraft">My Draft</a></li>
+                            <li><a ui-sref="mySubmitCases">My Submit Cases</a></li>
+                            <li><a ui-sref="allCases">All Cases</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div style="float: right; padding-right: 20px; padding-top: 10px;">
+                    <img src="Images/ddilogo.png" class="img-responsive" style="width: 100px; height: 47px;" />
+                </div>
+                <div style="float: right; text-align: right; padding-right: 20px;">
+                    <a href="#" style="text-decoration: none;"><b>Admin,Administrator(admin)</b></a>
+                    <br />
+                    <a ui-sref="home" style="text-decoration: none;"><b>Back to mPortal</b></a><br />
+                    <span style="color: #93a3b5;">Using workspace <u>mse2b</u></span>
+                    <br />
+                    <span id="curTime"></span>
+                </div>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</header>
+<!--<div class="container-fluid">-->
+    <!--<div class="row">-->
+        <!--<div class="col-md-3 col-xs-12" style="padding-top: 10px;">-->
+            <!--<img src="Images/processmaker.logo.jpg" class="img-responsive" style="width: 300px;-->
+                        <!--height: 40px;" />-->
+        <!--</div>-->
+        <!--<div class="col-md-9 col-xs-12 ">-->
+            <!--<div style="float: right; padding-right: 20px; padding-top: 10px;">-->
+                <!--<img src="Images/ddilogo.png" class="img-responsive" style="width: 100px; height: 47px;" />-->
+            <!--</div>-->
+            <!--<div style="float: right; text-align: right; padding-right: 20px;">-->
+                <!--<a href="#" style="text-decoration: none;"><b>Admin,Administrator(admin)</b></a>-->
+                <!--<br />-->
+                <!--<a href="http://69.31.48.227:82/mportal" style="text-decoration: none;"><b>Back to mPortal</b></a><br />-->
+                <!--<span style="color: #93a3b5;">Using workspace <u>mse2b</u></span>-->
+                <!--<br />-->
+                <!--<span id="curTime"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<div class="container-fluid" style="background-image: url(Images/menubackground.png);-->
+            <!--background-repeat: repeat; font-weight: bold; width: 100%; height: 27px;">-->
+
+<div class="container">
+    <div ui-view></div>
+</div>
+<script src="scripts/app.js"></script>
+<script src="scripts/HomeController.js"></script>
+<script src="scripts/MyActionsController.js"></script>
+<script src="scripts/NewESAEController.js"></script>
+<script src="scripts/MyDraftController.js"></script>
+<script src="scripts/MySubmitCasesController.js"></script>
+<script src="scripts/AllCasesController.js"></script>
+</body>
+</html>
