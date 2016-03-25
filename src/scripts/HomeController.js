@@ -1,6 +1,4 @@
-/**
- * Created by V Ravi on 01-02-2016.
- */
+
 angular.module("mportal")
     .controller("HomeController", function($scope){
         $scope.items = [{name: "A1", sal:10},

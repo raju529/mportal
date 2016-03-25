@@ -1,6 +1,4 @@
-/**
- * Created by V Ravi on 01-02-2016.
- */
+
 angular.module("mportal", ["ui.router"])
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise("home");
@@ -14,6 +12,11 @@ angular.module("mportal", ["ui.router"])
                templateUrl:"templates/myActions.html",
                controller: "MyActionsController"
            })
+            .state("myActionsEdit", {
+                url: "/myActions/edit/?actionId",
+                templateUrl:"templates/myActions-edit.html",
+                controller: "MyActionsEditController"
+            })
            .state("newESAE", {
                url: "/neweSAE",
                templateUrl:"templates/newESAE.html",
