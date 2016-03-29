@@ -1,3 +1,467 @@
-<div class="well">
-    This is {{draft}}  page.
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <div ng-cloak>
+            <div class="container" style="width: 100%;">
+                <div id="error_container" style="width: 85%; height: 15px; text-align: center; vertical-align: middle;
+                            padding-top: 4px; padding-bottom: 0px; padding-left: 208px;">
+                    &nbsp;
+                </div>
+                <div class="row profile">
+                    <div class="col-md-12 col-lg-12 col-xs-12" style="padding-left: 20px;">
+                        <div class="profile-content">
+                            <div class="container" style="width: 100%;">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-xs-12" style="width: 100%; padding-left: 0px;">
+                                        <div class="container" style="width: 100%;">
+                                            <div class="modal" id="progress" index="-1" role="dialog" aria-labelledby="progress"
+                                                 aria-hidden="true" data-backdrop="static">
+                                                <div class="modal-dialog" style="width: 62px; height: 30PX; background-color: Gray;">
+                                                    <div class="modal-content">
+                                                        <div class="modal-body">
+                                                            <img src="Images/ajax-loader.gif" width="30px" height="30px" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="border: 1px solid #ddd; padding: 10px;" id="mtable" ng-show="newCaseDiv">
+                                                <div class="row" style="margin-bottom: 10px;">
+                                                    <div class="col-xs-12 col-md-4 col-sm-4  ">
+                                                        <div class="form-group form-inline">
+                                                            <label>
+                                                                <b>eSAE Type</b></label>&nbsp;&nbsp;
+                                                            <select id="select1">
+                                                                <option style="color: #DDDDDD;" selected disabled value="">Select eSAE Type</option>
+                                                                <option>NSADR</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4 col-sm-4  ">
+                                                        <div class="form-group form-inline">
+                                                            <label>
+                                                                <b>Study</b></label>&nbsp;&nbsp;
+                                                            <select id="selectStudy" ng-model="StudyID" ng-options="item.UNIQUE_IDENTIFIER for item in Study track by item.STUDY_ID"
+                                                                    ng-change="ChangedStudy()">
+                                                                <option style="color: #DDDDDD;" selected disabled value="">Select Study</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4 col-sm-4">
+                                                        <div class="form-group form-inline">
+                                                            <label>
+                                                                <b>Subject</b></label>&nbsp;&nbsp;
+                                                            <select id="selectSubject" ng-model="SubjectID" ng-options="item.SUBJECTIDENTIFIER for item in Subject"
+                                                                    ng-change="ChangedSubject()">
+                                                                <option style="color: #DDDDDD;" selected disabled value="">Select Subject</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px;">
+                                                                <b>Reporter Information</b></div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div style="border: 1px solid #ddd; padding: 10px;">
+                                                                    <b>Name:Sowjanya Malineni   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;        Country:India   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;       City:Hyderabad</b>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px;">
+                                                                <b>Demography</b></div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div style="border: 1px solid #ddd; padding: 10px;">
+                                                                    <b>Date of Birth:</b>17-Jun-1980&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Age:</b>35&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Sex:</b>Male&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Height:</b>163&nbsp;CM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Weight:</b>70&nbsp;KG
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px;">
+                                                                <b>Adverse Event Details</b></div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div class="gridStyle" ng-grid="gridOptions1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <div>
+                                                                    <b>Concomitant Medications</b></div>
+                                                                <div style="float: right; margin-right: 50px;">
+                                                                    There are no associated Concomitant Medications
+                                                                    <input class="check" type="checkbox" id="medicationcheck" name="medicationcheck"
+                                                                           ng-click="medcheck()" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div id="Div1" class="gridStyle" ng-grid="gridOptions2">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <div>
+                                                                    <b>Concomitant Procedures</b></div>
+                                                                <div style="float: right; margin-right: 50px;">
+                                                                    There are no associated Concomitant Procedures
+                                                                    <input class="check" type="checkbox" id="procedurecheck" name="procedurecheck" ng-click="proccheck()" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div id="Div2" class="gridStyle" ng-grid="gridOptions3">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <div>
+                                                                    <b>Medical History</b></div>
+                                                                <div style="float: right; margin-right: 50px;">
+                                                                    There are no associated Medical History
+                                                                    <input class="check" type="checkbox" id="historycheck" name="historycheck" ng-click="histrycheck()" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div id="Div3" class="gridStyle" ng-grid="gridOptions4">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <div>
+                                                                    <b>Study Treatment</b></div>
+                                                                <div style="float: right; margin-right: 50px;">
+                                                                    No Study Treatment Given
+                                                                    <input class="check" type="checkbox" id="Checkbox1" name="historycheck" ng-click="histrycheck()" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div id="Div4" class="gridStyle" ng-grid="gridOptionsStudyTreatment">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <div>
+                                                                    <b>Lab Reports</b></div>
+                                                                <div style="float: right; margin-right: 50px;">
+                                                                    There are no associated Lab Test
+                                                                    <input class="check" type="checkbox" id="Checkbox2" name="historycheck" ng-click="histrycheck()" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="panel-body" style="width: 100%;">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div id="Div5" class="gridStyle" ng-grid="gridOptionsLabReports">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading cmd" style="">
+                                                                <b>Case Description</b>
+                                                            </div>
+                                                            <div class="panel-body">
+                                                                <ng-form id="myForm1" name="myForm1">
+                                                                    <div ng-class="{'has-error':myForm1.$invalid}" class="form-group">
+                                                                        <textarea type="textarea" ng-model="casedes" name="casedes" class="form-control" placeholder="Case Description" id="description"  required></textarea>
+                                                                        <span class="error" ng-show="myForm1.casedes.$error.required" style="color:#A94442;">Required!</span>
+                                                                        <span ng-show="myForm1.casedes.$error.pattern" style="color:#a94442;">Case Description cannot be empty!</span>
+                                                                    </div>
+                                                                </ng-form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px;">
+                                                                <b>Reporter Information</b></div>
+                                                            <div class="panel-body" style="width: 100%;text-align:center; ">
+                                                                <div style="padding-left:420px; padding-bottom:10px;"><table border="2" style="width:100px;">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>S. No</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>File Name</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>File Category</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Notes</b>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>1</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Lab Report1.pdf</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Lab Report</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b> SomeNotes</b>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>2</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Pregnancy Test.pdf</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Lab Report</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b> SomeNotes</b>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <b>3</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Discharge Summary.pdf</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b>Lab Report</b>
+                                                                        </td>
+                                                                        <td>
+                                                                            <b> SomeNotes</b>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table></div>
+                                                                <div>
+                                                                    <input type="button" value="Add"  />&nbsp;&nbsp;
+                                                                    <input type="button" value="Remove" />&nbsp;&nbsp;
+                                                                    <input type="button" value="E-Mail"  /></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div ng-show="SubjectID">
+                                                    <div align="center">
+                                                        <input type="button" value="Save as Draft" class="buttonCustG" ng-disabled="myForm1.$invalid"
+                                                               ng-click="save()" />
+                                                        <input type="button" value="Submit for Review" class="buttonCustG" ng-disabled="myForm1.$invalid"
+                                                               ng-click="submit()" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="myDraftDiv" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" style="background-color: #DDDDDD; color: #000000;font-size:14px; padding: 4px 2px 4px 2px;">
+                                                    <b>My Draft</b></div>
+                                                <div class="panel-body" style="width: 100%;">
+                                                    <div class="gridWidthWrapper">
+                                                        <div class="mnggridStyle" ng-grid="gridOptions">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div ng-show="myActionsDiv" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" style="background-color: #DDDDDD; color: #000000;font-size:14px; padding: 4px 2px 4px 2px;">
+                                                    <b>My Actions</b>
+                                                    <!--<div style="float: right;">
+                                                        <a data-placement="left" data-toggle="popover" id="showPopover" data-container="body"
+                                                            type="button" data-html="true" href="#" id="login"><i class="glyphicon glyphicon-align-justify">
+                                                            </i></a>
+                                                    </div>
+                                                    <div id="popup-content" class="hide">
+                                                        <ul id="menubutton">
+                                                            <li id="li3"><a href="#" id="togglemyaction" ng-click="myActions()">My Actions</a></li>
+                                                            <li><a href="#" id="togglenewcase" ng-click="newCasefn()">Create New eSAE</a></li>
+                                                            <li><a href="#" id="toggle" ng-click="manageCase()">My Draft</a></li>
+                                                            <li><a style="pointer-events: none; cursor: default;" href="#" id="A3">My Submit Cases</a></li>
+                                                            <li><a style="pointer-events: none; cursor: default;" href="#" id="A4">All Cases</a></li>
+                                                        </ul>
+                                                    </div>-->
+                                                </div>
+                                                <div class="panel-body" style="width: 100%;">
+                                                    <div class="gridWidthWrapper">
+                                                        <div class="mnggridStyle" ng-grid="gridOptionsMA">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="MyDraftEditMenu" style="padding-left: 15px;">
+                                    <div class="panel-group">
+                                        <div style="background-color: #D7D7D7; width: 100px; font-size: 14px; padding: 5px;
+                                                    font-weight: bold;">
+                                            Case ID&nbsp;<var id="CaseIdNo">_appnum</var></div>
+                                        <div class="panel panel-default">
+                                            <!-- <div class="panel-heading">-->
+                                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>-->
+                                            <!--   </div>-->
+                                            <div id="error_container1" style="width: 85%; height: 15px; text-align: center; vertical-align: middle;
+                                                        padding-top: 4px; padding-bottom: 0px; padding-left: 208px;">
+                                                &nbsp;
+                                            </div>
+                                            <div class="panel-body">
+                                                <div>
+                                                    <div class="panel-group">
+                                                        <div class="panel panel-default">
+                                                            <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px">
+                                                                <b>Adverse Event Details</b></div>
+                                                            <div class="panel-body">
+                                                                <div class="gridWidthWrapper">
+                                                                    <div class="gridStyle" ng-grid="editgridOptions1">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-group">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                    <div>
+                                                                        <b>Concomitant Medications Details</b></div>
+                                                                    <div style="float: right; margin-right: 50px;">
+                                                                        There are no associated Concomitant Medications.
+                                                                        <input class="check" type="checkbox" id="editmedicationcheck" name="editmedicationcheck"
+                                                                               ng-click="editmedcheck()" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="gridWidthWrapper">
+                                                                        <div class="gridStyle" ng-grid="editgridOptions2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-group">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                    <div>
+                                                                        <b>Concomitant Procedures Details</b></div>
+                                                                    <div style="float: right; margin-right: 50px;">
+                                                                        There are no associated Concomitant Procedures.
+                                                                        <input class="check" type="checkbox" id="editprocedurecheck" name="editprocedurecheck"
+                                                                               ng-click="editproccheck()" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="gridWidthWrapper">
+                                                                        <div class="gridStyle" ng-grid="editgridOptions3">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-group">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                    <div>
+                                                                        <b>Medical History Details</b></div>
+                                                                    <div style="float: right; margin-right: 50px;">
+                                                                        There are no associated Medical History.
+                                                                        <input class="check" type="checkbox" id="edithistorycheck" name="edithistorycheck"
+                                                                               ng-click="edithistrycheck()" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <div class="gridWidthWrapper">
+                                                                        <div class="gridStyle" ng-grid="editgridOptions4">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="panel-group">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px">
+                                                                    <b>Case Description</b>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <ng-form id="myForm" name="myForm">
+                                                                        <div ng-class="{'has-error':myForm.$invalid}" class="form-group">
+                                                                            <textarea type="textarea"  ng-model="EditCaseDescription"  name="casedes" class="form-control" id="editdescrition" placeholder="Case Description"  required></textarea>
+                                                                            <span class="error" ng-show="myForm.casedes.$error.required" style="color:#A94442;">Required!</span>
+                                                                            <span ng-show="myForm.casedes.$error.pattern" style="color:#a94442;">Case Description cannot be empty!</span>
+                                                                        </div>
+                                                                    </ng-form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div align="right">
+                                                        <input type="button" value="Save as Draft" class="buttonCustG" ng-disabled="myForm.$invalid"
+                                                               ng-click="update()" />
+                                                        <input type="button" value="Submit for Review" class="buttonCustG" ng-disabled="myForm.$invalid"
+                                                               ng-click="updsubmit()" />
+                                                        <button type="button" class="buttonCustGC" ng-click="editAreaCancel()">
+                                                            Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
 </div>

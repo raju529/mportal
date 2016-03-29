@@ -1,127 +1,305 @@
+<div class="tab-content">
+    <div id="home" class="tab-pane fade in active">
+        <div ng-cloak>
+            <div class="container" style="width: 100%;">
+                <div id="error_container" style="width: 85%; height: 15px; text-align: center; vertical-align: middle;
+                            padding-top: 4px; padding-bottom: 0px; padding-left: 208px;">
+                    &nbsp;
+                </div>
+                <div class="row profile">
+                    <div class="col-md-12 col-lg-12 col-xs-12" style="padding-left: 20px;">
+                        <div class="profile-content">
+                            <div class="container" style="width: 100%;">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-xs-12" style="width: 100%; padding-left: 0px;">
+                                        <div class="modal" id="progress" index="-1" role="dialog" aria-labelledby="progress"
+                                             aria-hidden="true" data-backdrop="static">
+                                            <div class="modal-dialog" style="width: 62px; height: 30PX; background-color: Gray;">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <img src="Images/ajax-loader.gif" width="30px" height="30px" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div >
+                                            <div >
+                                                <div >
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th style="background-color:#D3D3D3">Case Id {{id}}</th>
-        </tr>
-        <tr>
-            <th colspan="8" class="bg-primary" style="background-color:">Adeverse Event Details</th>
-        </tr>
-        <tr>
-            <th><input type="checkbox" ng-model="check" ></th>
-            <th>Adeverse Event</th>
-            <th>Serious</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Toxicity Grade</th>
-            <th>Casuality Factors</th>
-            <th>Out Come</th>
-        </tr>
-        <tr ng-repeat="adverse in adverseEvents">
-            <td></td>
-            <td>{{adverse.adverseEvent}}</td>
-            <td>{{adverse.Serious}}</td>
-            <td>{{adverse.StartDate}}</td>
-            <td>{{adverse.EndDate}}</td>
-            <td>{{adverse.ToxicityGrade}}</td>
-            <td>{{adverse.CasualityFactors}}</td>
-            <td>{{adverse.Outcome}}</td>
-        </tr>
-    </table>
+                                                    <!--<div style="float: right;">
+                                                        <a data-placement="left" data-toggle="popover" id="showPopover" data-container="body"
+                                                            type="button" data-html="true" href="#" id="login"><i class="glyphicon glyphicon-align-justify">
+                                                            </i></a>
+                                                    </div>
+                                                    <div id="popup-content" class="hide">
+                                                        <ul id="menubutton">
+                                                            <li id="li3"><a href="#" id="togglemyaction" ng-click="myActions()">My Actions</a></li>
+                                                            <li><a href="#" id="togglenewcase" ng-click="newCasefn()">Create New eSAE</a></li>
+                                                            <li><a href="#" id="toggle" ng-click="manageCase()">My Draft</a></li>
+                                                            <li><a style="pointer-events: none; cursor: default;" href="#" id="A3">My Submit Cases</a></li>
+                                                            <li><a style="pointer-events: none; cursor: default;" href="#" id="A4">All Cases</a></li>
+                                                        </ul>
+                                                    </div>-->
+                                                </div>
+                                                <div class="panel-body" style="width: 100%;">
+                                                    <div class="gridWidthWrapper">
+                                                        <div style="padding-left: 15px;">
+                                                            <div class="panel-group">
+                                                                <div style="background-color: #D7D7D7; width: 100px; font-size: 14px; padding: 5px;
+                                                    font-weight: bold;">
+                                                                    Case ID&nbsp;<var id="CaseIdNo">_appnum</var></div>
+                                                                <div class="panel panel-default">
+                                                                    <!-- <div class="panel-heading">-->
+                                                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span></button>-->
+                                                                    <!--   </div>-->
+                                                                    <div id="error_container1" style="width: 85%; height: 15px; text-align: center; vertical-align: middle;
+                                                        padding-top: 4px; padding-bottom: 0px; padding-left: 208px;">
+                                                                        &nbsp;
+                                                                    </div>
+                                                                    <div class="panel-body">
+                                                                        <div>
+                                                                            <div class="panel-group">
+                                                                                <div class="panel panel-default">
+                                                                                    <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px">
+                                                                                        <b>Adverse Event Details</b></div>
+                                                                                    <div class="panel-body">
+                                                                                        <div class="gridWidthWrapper">
+                                                                                            <div class="gridStyle" ng-grid="editgridOptions1">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="panel-group">
+                                                                                    <div class="panel panel-default">
+                                                                                        <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                                            <div>
+                                                                                                <b>Concomitant Medications Details</b></div>
+                                                                                            <div style="float: right; margin-right: 50px;">
+                                                                                                There are no associated Concomitant Medications.
+                                                                                                <input class="check" type="checkbox" id="editmedicationcheck" name="editmedicationcheck"
+                                                                                                       ng-click="editmedcheck()" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="panel-body">
+                                                                                            <div class="gridWidthWrapper">
+                                                                                                <div class="gridStyle" ng-grid="editgridOptions2">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="panel-group">
+                                                                                    <div class="panel panel-default">
+                                                                                        <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                                            <div>
+                                                                                                <b>Concomitant Procedures Details</b></div>
+                                                                                            <div style="float: right; margin-right: 50px;">
+                                                                                                There are no associated Concomitant Procedures.
+                                                                                                <input class="check" type="checkbox" id="editprocedurecheck" name="editprocedurecheck"
+                                                                                                       ng-click="editproccheck()" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="panel-body">
+                                                                                            <div class="gridWidthWrapper">
+                                                                                                <div class="gridStyle" ng-grid="editgridOptions3">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="panel-group">
+                                                                                    <div class="panel panel-default">
+                                                                                        <div class="panel-heading" style="line-height: 0.1; background-color: #357999; color: #fff;
+                                                                            padding-bottom: 12px;">
+                                                                                            <div>
+                                                                                                <b>Medical History Details</b></div>
+                                                                                            <div style="float: right; margin-right: 50px;">
+                                                                                                There are no associated Medical History.
+                                                                                                <input class="check" type="checkbox" id="edithistorycheck" name="edithistorycheck"
+                                                                                                       ng-click="edithistrycheck()" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="panel-body">
+                                                                                            <div class="gridWidthWrapper">
+                                                                                                <div class="gridStyle" ng-grid="editgridOptions4">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="panel-group">
+                                                                                    <div class="panel panel-default">
+                                                                                        <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px">
+                                                                                            <b>Case Description</b>
+                                                                                        </div>
+                                                                                        <div class="panel-body">
+                                                                                            <ng-form id="myForm" name="myForm">
+                                                                                                <div ng-class="{'has-error':myForm.$invalid}" class="form-group">
+                                                                                                    <textarea type="textarea"  ng-model="EditCaseDescription"  name="casedes" class="form-control" id="editdescrition" placeholder="Case Description"  required></textarea>
+                                                                                                    <span class="error" ng-show="myForm.casedes.$error.required" style="color:#A94442;">Required!</span>
+                                                                                                    <span ng-show="myForm.casedes.$error.pattern" style="color:#a94442;">Case Description cannot be empty!</span>
+                                                                                                </div>
+                                                                                            </ng-form>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div align="right">
+                                                                                <input type="button" value="Save as Draft" class="buttonCustG" ng-disabled="myForm.$invalid"
+                                                                                       ng-click="update()" />
+                                                                                <input type="button" value="Submit for Review" class="buttonCustG" ng-disabled="myForm.$invalid"
+                                                                                       ng-click="updsubmit()" />
+                                                                                <button type="button" class="buttonCustGC" ng-click="editAreaCancel()">
+                                                                                    Cancel</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
 </div>
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th colspan="4" class="bg-primary" style="background-color:">Concomitant Medications Details</th>
-            <th colspan="4" class="bg-primary" style="background-color:">There are no associated Concomitant Medications.
-                <input type="checkbox" value="" disabled>
-            </th>
-        </tr>
-        <tr>
-            <th><input type="checkbox" ng-model="check" ></th>
-            <th>Name of Medication</th>
-            <th>Start Date</th>
-            <th>Ongoing ?</th>
-            <th>Reason for Medication (indication)</th>
-            <th>Reason for Medication</th>
-        </tr>
-        <tr ng-repeat="medication in medicationDetails">
-            <td></td>
-            <td>{{medication.medicationName}}</td>
-            <td>{{medication.StartDate}}</td>
-            <td>{{medication.Ongoing}}</td>
-            <td>{{medication.reasonForMedi}}</td>
-            <td>{{medication.reasonForMedic}}</td>
-        </tr>
-    </table>
-</div>
+<!--<div>-->
+    <!--<table class="table table-bordered">-->
+        <!--<tr>-->
+            <!--<th style="background-color:#D3D3D3">Case Id {{id}}</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th colspan="8" class="bg-primary" style="background-color:">Adeverse Event Details</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th><input type="checkbox" ng-model="check" ></th>-->
+            <!--<th>Adeverse Event</th>-->
+            <!--<th>Serious</th>-->
+            <!--<th>Start Date</th>-->
+            <!--<th>End Date</th>-->
+            <!--<th>Toxicity Grade</th>-->
+            <!--<th>Casuality Factors</th>-->
+            <!--<th>Out Come</th>-->
+        <!--</tr>-->
+        <!--<tr ng-repeat="adverse in adverseEvents">-->
+            <!--<td></td>-->
+            <!--<td>{{adverse.adverseEvent}}</td>-->
+            <!--<td>{{adverse.Serious}}</td>-->
+            <!--<td>{{adverse.StartDate}}</td>-->
+            <!--<td>{{adverse.EndDate}}</td>-->
+            <!--<td>{{adverse.ToxicityGrade}}</td>-->
+            <!--<td>{{adverse.CasualityFactors}}</td>-->
+            <!--<td>{{adverse.Outcome}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th colspan="4" class="bg-primary" style="background-color:">Concomitant Procedures Details</th>
-            <th colspan="4" class="bg-primary" style="background-color:">There are no associated Procedures Medications.
-                <input type="checkbox" value="" >
-            </th>
-        </tr>
-        <tr>
-            <th><input type="checkbox" ng-model="check" ></th>
-            <th>Name Of Procedure</th>
-            <th>Start Date</th>
-            <th>Ongoing ?</th>
-            <th>Reason for Medications (indication)</th>
-            <th>Reason for Medication</th>
-        </tr>
-        <tr ng-repeat="procedure in procedureDetails">
-            <td></td>
-            <td>{{procedure.procedureName}}</td>
-            <td>{{procedure.StartDate}}</td>
-            <td>{{procedure.Ongoing}}</td>
-            <td>{{procedure.reasonForMedi}}</td>
-            <td>{{procedure.reasonForMedic}}</td>
-        </tr>
-    </table>
-</div>
+<!--<div>-->
+    <!--<table class="table table-bordered">-->
+        <!--<tr>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">Concomitant Medications Details</th>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">There are no associated Concomitant Medications.-->
+                <!--<input type="checkbox" value="" disabled>-->
+            <!--</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th><input type="checkbox" ng-model="check" ></th>-->
+            <!--<th>Name of Medication</th>-->
+            <!--<th>Start Date</th>-->
+            <!--<th>Ongoing ?</th>-->
+            <!--<th>Reason for Medication (indication)</th>-->
+            <!--<th>Reason for Medication</th>-->
+        <!--</tr>-->
+        <!--<tr ng-repeat="medication in medicationDetails">-->
+            <!--<td></td>-->
+            <!--<td>{{medication.medicationName}}</td>-->
+            <!--<td>{{medication.StartDate}}</td>-->
+            <!--<td>{{medication.Ongoing}}</td>-->
+            <!--<td>{{medication.reasonForMedi}}</td>-->
+            <!--<td>{{medication.reasonForMedic}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th colspan="4" class="bg-primary" style="background-color:">Medical History Details</th>
-            <th colspan="4" class="bg-primary" style="background-color:">There are no associated Medical History.
-                <input type="checkbox" value="" disabled >
-            </th>
-        </tr>
-        <tr>
-            <th><input type="checkbox" ng-model="check" ></th>
-            <th>Condition</th>
-            <th>Start Date</th>
-            <th>Related to Study Condition?</th>
-            <th>Ongoing?</th>
-        </tr>
-        <tr ng-repeat="history in historyDetails">
-            <td></td>
-            <td>{{history.condition}}</td>
-            <td>{{history.StartDate}}</td>
-            <td>{{history.studyCondition}}</td>
-            <td>{{history.ongoing}}</td>
-        </tr>
-    </table>
-</div>
+<!--<div>-->
+    <!--<table class="table table-bordered">-->
+        <!--<tr>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">Concomitant Procedures Details</th>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">There are no associated Procedures Medications.-->
+                <!--<input type="checkbox" value="" >-->
+            <!--</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th><input type="checkbox" ng-model="check" ></th>-->
+            <!--<th>Name Of Procedure</th>-->
+            <!--<th>Start Date</th>-->
+            <!--<th>Ongoing ?</th>-->
+            <!--<th>Reason for Medications (indication)</th>-->
+            <!--<th>Reason for Medication</th>-->
+        <!--</tr>-->
+        <!--<tr ng-repeat="procedure in procedureDetails">-->
+            <!--<td></td>-->
+            <!--<td>{{procedure.procedureName}}</td>-->
+            <!--<td>{{procedure.StartDate}}</td>-->
+            <!--<td>{{procedure.Ongoing}}</td>-->
+            <!--<td>{{procedure.reasonForMedi}}</td>-->
+            <!--<td>{{procedure.reasonForMedic}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 
-<div>
-    <table class="table table-bordered">
-        <tr>
-            <th colspan="8" class="bg-primary" style="background-color:">Case Description</th>
-        </tr>
-        <tr>
-            <th><textarea ng-model="check" rows="3" cols="120"></textarea></th>
+<!--<div>-->
+    <!--<table class="table table-bordered">-->
+        <!--<tr>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">Medical History Details</th>-->
+            <!--<th colspan="4" class="bg-primary" style="background-color:">There are no associated Medical History.-->
+                <!--<input type="checkbox" value="" disabled >-->
+            <!--</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th><input type="checkbox" ng-model="check" ></th>-->
+            <!--<th>Condition</th>-->
+            <!--<th>Start Date</th>-->
+            <!--<th>Related to Study Condition?</th>-->
+            <!--<th>Ongoing?</th>-->
+        <!--</tr>-->
+        <!--<tr ng-repeat="history in historyDetails">-->
+            <!--<td></td>-->
+            <!--<td>{{history.condition}}</td>-->
+            <!--<td>{{history.StartDate}}</td>-->
+            <!--<td>{{history.studyCondition}}</td>-->
+            <!--<td>{{history.ongoing}}</td>-->
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
 
-        </tr>
-    </table>
-</div>
-<div>
-    <button type="button" class="btn btn-primary">Save as Draft</button>
-    <button type="button" class="btn btn-success">Submit for Review</button>
-    <button type="button" class="btn btn-danger">Cancel</button>
-</div>
+<!--<div>-->
+    <!--<table class="table table-bordered">-->
+        <!--<tr>-->
+            <!--<th colspan="8" class="bg-primary" style="background-color:">Case Description</th>-->
+        <!--</tr>-->
+        <!--<tr>-->
+            <!--<th><textarea ng-model="check" rows="3" cols="120"></textarea></th>-->
+
+        <!--</tr>-->
+    <!--</table>-->
+<!--</div>-->
+<!--<div>-->
+    <!--<button type="button" class="btn btn-primary">Save as Draft</button>-->
+    <!--<button type="button" class="btn btn-success">Submit for Review</button>-->
+    <!--<button type="button" class="btn btn-danger">Cancel</button>-->
+<!--</div>-->

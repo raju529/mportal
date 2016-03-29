@@ -1,5 +1,5 @@
 
-angular.module("mportal", ["ui.router"])
+angular.module("mportal", ["ui.router", "ngGrid"])
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise("home");
        $stateProvider.state("home", {
@@ -13,7 +13,7 @@ angular.module("mportal", ["ui.router"])
                controller: "MyActionsController"
            })
             .state("myActionsEdit", {
-                url: "/myActions/edit/?actionId",
+                url: "/myActions/edit/",
                 templateUrl:"templates/myActions-edit.html",
                 controller: "MyActionsEditController"
             })
