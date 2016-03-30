@@ -3,8 +3,8 @@ angular.module("mportal")
     .factory("mportalService", function(){
         return {};
     })
-    .controller('MyActionsController', ['$http', '$scope','$state', function ($http, $scope, $state) {
-
+    .controller('MyActionsController', ['$http', '$scope','$state','mportalService', function ($http, $scope, $state, mportalService) {
+    $scope.showLoadingImg = true;
     $scope.serverUrl = 'http://mse2bstage.ddismart.com:82/';
     $scope.workspace = 'mse2b';
     $scope.credentials = {

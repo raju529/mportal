@@ -1,6 +1,7 @@
 angular.module("mportal")
-    .controller("MyActionsEditController", function($scope, mportalService){
+    .controller("MyActionsEditController", function($scope, mportalService, $state){
         var data = mportalService.myactionsData;
+        $scope.app_number = data["app_number"] || 0;
        // $scope.id = $stateParams.actionId;
         $scope.myActionsEdit = function(){
             $scope.EditInMyActions = 2;
@@ -277,44 +278,156 @@ angular.module("mportal")
             });
         };
 
+        // columns for Adverse event details
+        $scope.columns1 = [
+            { field: 'index', displayName: 'id', visible: false },
+            { field: 'ADVERSEEVENT', displayName: 'Adverse Event' },
+            { field: 'SERIOUS', displayName: 'Serious' },
+            { field: 'ADVERSESTARTDATE', displayName: 'Start Date' },
+            { field: 'ADVERSEENDDATE', displayName: 'End Date' },
+            { field: 'TOXICITYGRADE', displayName: 'Toxicity Grade' },
+            { field: 'CAUSALITYFACTORS', displayName: 'Causality Factors' },
+            { field: 'OUTCOME', displayName: 'Out Come'}];
+        $scope.editAdverseSelected = [];
+        $scope.editgridOptions1 = {
+            data: 'EditAdverseEvents',
+            enableSorting: true,
+            columnDefs: $scope.columns1,
+            checkboxCellTemplate: '<div class="ngSelectionCell"><input tabindex="-1"  class="ngSelectionCheckbox"  name="advchkbox" type="checkbox" ng-checked="row.selected" /></div>',
+            checkboxHeaderTemplate: '<input class="ngSelectionHeader" type="checkbox" ng-model="allSelected" id="editadversechk"  ng-change="toggleSelectAll(allSelected)"/>',
+            showSelectionCheckbox: true,
+            selectWithCheckboxOnly: true,
+            selectedItems: $scope.editAdverseSelected,
+            enableColumnResize: true,
+            headerRowHeight: 25,
+            rowHeight: 25
+        };
 
-        $scope.adverseEvents=[
+
+        // CONCOMITANT MEDICATIONS DETAILS edit grid
+        // columns for CONCOMITANT MEDICATIONS DETAILS
+        $scope.columns2 = [
+            { field: 'index1', displayName: 'id', visible: false },
+            { field: 'NAMEOFMEDICATION', displayName: 'Name Of Medication' },
+            { field: 'MEDICATIONSSTARTDATE', displayName: 'Start Date' },
+            { field: 'MEDICATIONSONGOING', displayName: 'Ongoing?' },
+            { field: 'MEDICATIONSREASONFORMEDICATION', displayName: 'Reason for Medication (indication)', width: '280px' },
+            { field: 'CMREASONFORMEDICATION', displayName: 'Reason for Medication'}];
+        $scope.editselectedmedication = [];
+        $scope.editgridOptions2 = {
+            data: 'EditMedications',
+            enableSorting: true,
+            columnDefs: $scope.columns2,
+            checkboxCellTemplate: '<div class="ngSelectionCell"><input tabindex="-1" ng-click="editmeddatacheck()" class="ngSelectionCheckbox editmedchkcss"  name="editmedchkbox" type="checkbox" ng-checked="row.selected" /></div>',
+            checkboxHeaderTemplate: '<input class="ngSelectionHeader" type="checkbox" id="editmedheaderchk" ng-click="editmedheadercheck()" name="editmedheaderchk"  ng-model="allSelected" ng-change="toggleSelectAll(allSelected)"/>',
+            showSelectionCheckbox: true,
+            selectedItems: $scope.editselectedmedication,
+            selectWithCheckboxOnly: true,
+            enableColumnResize: true,
+            headerRowHeight: 25,
+            rowHeight: 25
+        };
+
+        // CONCOMITANT PROCEDURES DETAILS grid
+        // columns for CONCOMITANT PROCEDURES DETAILS
+        $scope.columns3 = [
+            { field: 'index2', displayName: 'id', visible: false },
+            { field: 'CPNAMEOFPROCEDURE', displayName: 'Name Of Procedure' },
+            { field: 'PROCEDURESSTARTDATE', displayName: 'Start Date' },
+            { field: 'PROCEDURESONGOING', displayName: 'Ongoing?' },
+            { field: 'CPREASONFORMEDICATION', displayName: 'Reason for Medication (indication)', width: '280px' },
+            { field: 'CPMREASONFORMEDICATION', displayName: 'Reason for Medication'}];
+        $scope.editselectedprocedures = [];
+        $scope.editgridOptions3 = {
+            data: 'Editprocdetails',
+            enableSorting: true,
+            columnDefs: $scope.columns3,
+            checkboxCellTemplate: '<div class="ngSelectionCell"><input tabindex="-1" ng-click="editprocdatacheck()" class="ngSelectionCheckbox editprocchkcss"  name="editprocchkbox" type="checkbox" ng-checked="row.selected" /></div>',
+            checkboxHeaderTemplate: '<input class="ngSelectionHeader" type="checkbox" id="editprocheaderchk" ng-click="editprocheadercheck()" name="editprocheaderchk"  ng-model="allSelected" ng-change="toggleSelectAll(allSelected)"/>',
+            showSelectionCheckbox: true,
+            selectedItems: $scope.editselectedprocedures,
+            selectWithCheckboxOnly: true,
+            enableColumnResize: true,
+            headerRowHeight: 25,
+            rowHeight: 25
+        };
+
+        // MEDICAL HISTORY DETAILS grid
+        //columns for MEDICAL HISTORY DETAILS
+        $scope.columns4 = [
+            { field: 'index3', displayName: 'id', visible: false },
+            { field: 'MEDICALH1CONDITION', displayName: 'Condition' },
+            { field: 'MEDICALH1STARTDATE', displayName: 'Start Date' },
+            { field: 'MRELATEDTOSTUDYCONDITION', displayName: 'Related to Study Condition?' },
+            { field: 'MEDICALH1ONGOING', displayName: 'Ongoing?'}];
+        $scope.editselectedmedhistory = [];
+        $scope.editgridOptions4 = {
+            data: 'EditMedh1details',
+            enableSorting: true,
+            columnDefs: $scope.columns4,
+            checkboxCellTemplate: '<div class="ngSelectionCell"><input tabindex="-1" ng-click="histrydatacheck()" class="ngSelectionCheckbox edithistchkcss"  name="edithistchkbox" type="checkbox" ng-checked="row.selected" /></div>',
+            checkboxHeaderTemplate: '<input class="ngSelectionHeader" type="checkbox" id="edithistheaderchk" ng-click="edithistheadercheck()" name="edithistheaderchk"  ng-model="allSelected" ng-change="toggleSelectAll(allSelected)"/>' + '&nbsp; Select',
+            showSelectionCheckbox: true,
+            selectedItems: $scope.editselectedmedhistory,
+            selectWithCheckboxOnly: true,
+            enableColumnResize: true,
+            headerRowHeight: 25,
+            rowHeight: 25
+        };
+
+        $scope.editAreaCancel = function(){
+            $state.go("myActions");
+        };
+        $scope.EditAdverseEvents=[
             {
-                adverseEvent:"Actoplus MET",Serious:"No",StartDate:"03/17/1998",EndDate:"11/10/2008",ToxicityGrade:"",CasualityFactors:"PossibleRelated",Outcome:"recovered"
+                index:1, ADVERSEEVENT:"Actoplus MET",SERIOUS:"No",ADVERSESTARTDATE:"03/17/1998",ADVERSEENDDATE:"11/10/2008",TOXICITYGRADE:"",CAUSALITYFACTORS:"PossibleRelated",OUTCOME:"recovered"
 
             },
             {
-                adverseEvent:"Actoplus MET",Serious:"No",StartDate:"03/17/1998",EndDate:"11/10/2008",ToxicityGrade:"",CasualityFactors:"PossibleRelated",Outcome:"recovered"
+                index:2, ADVERSEEVENT:"Actoplus MET",SERIOUS:"No",ADVERSESTARTDATE:"03/17/1998",ADVERSEENDDATE:"11/10/2008",TOXICITYGRADE:"",CAUSALITYFACTORS:"PossibleRelated",OUTCOME:"recovered"
 
             },
             {
-                adverseEvent:"Actoplus MET",Serious:"No",StartDate:"03/17/1998",EndDate:"11/10/2008",ToxicityGrade:"",CasualityFactors:"PossibleRelated",Outcome:"recovered"
+                index:3, ADVERSEEVENT:"Actoplus MET",SERIOUS:"No",ADVERSESTARTDATE:"03/17/1998",ADVERSEENDDATE:"11/10/2008",TOXICITYGRADE:"",CAUSALITYFACTORS:"PossibleRelated",OUTCOME:"recovered"
 
             }
         ];
 
-        $scope.medicationDetails=[
+        $scope.EditMedications=[
             {
-                medicationName:"Cachexia",StartDate:"01/05/1993",Ongoing:1,reasonForMedi:"appendix",reasonForMedic:""
+                index1:1, NAMEOFMEDICATION:"Cachexia",MEDICATIONSSTARTDATE:"01/05/1993",MEDICATIONSONGOING:1,MEDICATIONSREASONFORMEDICATION:"appendix",CMREASONFORMEDICATION:""
             },
             {
-                medicationName:"Cachexia",StartDate:"01/05/1993",Ongoing:1,reasonForMedi:"appendix",reasonForMedic:""
+                index1:2, NAMEOFMEDICATION:"Cachexia",MEDICATIONSSTARTDATE:"01/05/1993",MEDICATIONSONGOING:1,MEDICATIONSREASONFORMEDICATION:"appendix",CMREASONFORMEDICATION:""
             },
             {
-                medicationName:"Cachexia",StartDate:"01/05/1993",Ongoing:1,reasonForMedi:"appendix",reasonForMedic:""
+                index1:3,NAMEOFMEDICATION:"Cachexia",MEDICATIONSSTARTDATE:"01/05/1993",MEDICATIONSONGOING:1,MEDICATIONSREASONFORMEDICATION:"appendix",CMREASONFORMEDICATION:""
             }
         ];
 
-        $scope.procedureDetails=[
+        $scope.Editprocdetails=[
             {
-                procedureName:"proc",StartDate:"",Ongoing:"",reasonForMedi:"",reasonForMedic:""
+                index2:1,CPNAMEOFPROCEDURE:"proc",PROCEDURESSTARTDATE:"01/05/1993",PROCEDURESONGOING:"",CPREASONFORMEDICATION:"",CPMREASONFORMEDICATION:""
+            },
+            {
+                index2:2,CPNAMEOFPROCEDURE:"proc",PROCEDURESSTARTDATE:"01/05/1993",PROCEDURESONGOING:"",CPREASONFORMEDICATION:"",CPMREASONFORMEDICATION:""
+            },
+            {
+                index2:3,CPNAMEOFPROCEDURE:"proc",PROCEDURESSTARTDATE:"01/05/1993",PROCEDURESONGOING:"",CPREASONFORMEDICATION:"",CPMREASONFORMEDICATION:""
             }
         ];
 
-        $scope.historyDetails=[
+        $scope.EditMedh1details=[
             {
-                condition:"Diabetes mellitus type2",StartDate:"",studyCondition:"",ongoing:""
+                index3:1,MEDICALH1CONDITION:"Diabetes mellitus type2",MEDICALH1STARTDATE:"01/05/1993",MRELATEDTOSTUDYCONDITION:"",MEDICALH1ONGOING:""
+            },
+            {
+                index3:2,MEDICALH1CONDITION:"Diabetes mellitus type2",MEDICALH1STARTDATE:"01/05/1993",MRELATEDTOSTUDYCONDITION:"",MEDICALH1ONGOING:""
+            },
+            {
+                index3:2,MEDICALH1CONDITION:"Diabetes mellitus type2",MEDICALH1STARTDATE:"01/05/1993",MRELATEDTOSTUDYCONDITION:"",MEDICALH1ONGOING:""
             }
+
         ]
 
     });
