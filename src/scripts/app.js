@@ -27,6 +27,11 @@ angular.module("mportal", ["ui.router", "ngGrid"])
                templateUrl:"templates/myDraft.html",
                controller: "MyDraftController"
            })
+           .state("myDraftEdit", {
+               url: "/myDraft/edit/",
+               templateUrl:"templates/myDraft-edit.html",
+               controller: "MyDraftEditController"
+           })
            .state("mySubmitCases", {
                url: "/mySubmitCases",
                templateUrl:"templates/mySubmitCases.html",
