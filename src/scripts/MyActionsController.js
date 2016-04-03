@@ -135,15 +135,15 @@ angular.module("mportal")
 
     //on clicking My Actions
     $scope.myActions = function () {
-        $('#togglemenu').removeClass('collapse in');
-        $('#togglemenu').addClass('collapse');
+        //$('#togglemenu').removeClass('collapse in');
+        //$('#togglemenu').addClass('collapse');
         var requestYmcMA = $http({
             method: 'POST',
             url: $scope.serverUrl + $scope.workspace + '/oauth2/token',
             data: $scope.credentials
         });
         requestYmcMA.success(function (html) {
-            $("#progress").modal();
+           // $("#progress").modal();
             $scope.AccessToken = html.access_token;
             var requestZmcMA = $http({
                 method: 'GET',
@@ -151,9 +151,9 @@ angular.module("mportal")
                 headers: { 'Authorization': 'Bearer ' + html.access_token }
             });
             requestZmcMA.success(function (data) {
-                $('.mnggridStyle').trigger('resize');
+                //$('.mnggridStyle').trigger('resize');
                 $scope.CasesMA = data;
-                $("#progress").modal('hide');
+                //$("#progress").modal('hide');
             });
         });
 
@@ -164,8 +164,9 @@ angular.module("mportal")
         $scope.topheadermenu = true;
         $scope.toggleMenuDiv = true;
     };
- //$scope.myActions();
-    //MY Actions grid
+        //You need to comment out $scope.myActions method
+       // $scope.myActions();
+     //MY Actions grid
     $scope.gridOptionsMA = {
         data: 'CasesMA',
         enableSorting: true,
@@ -455,7 +456,7 @@ angular.module("mportal")
         //    });
         //});
     };
-        //Deleted code
+        //Deleted code. if you comment out $scope.myActions method u need to delete
         $scope.CasesMA=[
             {
                 app_number:511,study_label:11,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
