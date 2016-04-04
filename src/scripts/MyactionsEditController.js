@@ -1,5 +1,5 @@
 angular.module("mportal")
-    .controller("MyActionsEditController", function($scope, mportalService, $state){
+    .controller("MyActionsEditController", function($scope, mportalService, $state, $http){
         $scope.serverUrl = 'http://mse2bstage.ddismart.com:82/';
         $scope.workspace = 'mse2b';
         $scope.credentials = {
@@ -288,6 +288,7 @@ angular.module("mportal")
             });
         };
 
+        $scope.myActionsEdit();
         // columns for Adverse event details
         $scope.columns1 = [
             { field: 'index', displayName: 'id', visible: false },
