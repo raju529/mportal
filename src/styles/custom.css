@@ -821,7 +821,7 @@ body {
 }
 select#selectStudy{
     width:250px;
-    height:25px;
+    /*height:25px;*/
 
 
 }
