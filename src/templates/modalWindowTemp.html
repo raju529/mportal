@@ -1,0 +1,35 @@
+<div>
+    <div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Upload File</h4>
+            </div>
+            <div class="modal-body">
+                <form name="myForm" class="form form-horizontal">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Upload File</label>
+                        <div class="col-sm-10">
+                        <input id="userUpload" class="form-control" ng-model="file.filePath" valid-file name="userUpload" required type="file" accept="application/pdf" onchange="angular.element(this).scope().getfileName(this.files)" />
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes" class="col-sm-2 control-label">Notes</label>
+                        <!-- <button ng-disabled="myForm.$invalid" type="submit" class="btn btn-primary"><i class="icon-white icon-ok"></i>&nbsp;Ok</button> -->
+                        <div class="col-sm-10">
+                        <input name="notes" id="notes" class="form-control" ng-model="file.data" required/>
+                            </div>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" ng-disabled="myForm.$invalid" class="btn btn-sm btn-success" ng-click="confirm()">
+                    <i class="glyphicon glyphicon-ok"></i> OK
+                </button>
+                <button class="btn btn-sm btn-danger" ng-click="cancel()">
+                    <i class="glyphicon glyphicon-remove"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

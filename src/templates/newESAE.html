@@ -188,7 +188,9 @@
                                                                 <b>Lab Reports</b></div>
                                                             <div style="float: right; margin-right: 50px;">
                                                                 There are no associated Lab Test
-                                                                <input class="check" type="checkbox" id="Checkbox2" name="historycheck" ng-click="histrycheck()" />
+                                                                <input class="check" type="checkbox" id="Checkbox2"
+                                                                       ng-model="isLabReportsChecked"
+                                                                       name="historycheck" ng-click="histrycheck()" />
                                                             </div>
                                                         </div>
                                                         <div class="panel-body" style="width: 100%;">
@@ -207,13 +209,14 @@
                                                             <b>Case Description</b>
                                                         </div>
                                                         <div class="panel-body">
-                                                            <ng-form id="myForm1" name="myForm1">
-                                                                <div ng-class="{'has-error':myForm1.$invalid}" class="form-group">
+                                                            <form name="myForm1" novalidate>
+                                                                <div ng-class="{'has-error':myForm1.casedes.$dirty && myForm1.$invalid}" class="form-group">
                                                                     <textarea type="textarea" ng-model="casedes" name="casedes" class="form-control" placeholder="Case Description" id="description"  required></textarea>
-                                                                    <span class="error" ng-show="myForm1.casedes.$error.required" style="color:#A94442;">Required!</span>
+                                                                    <span class="error"
+                                                                          ng-show="myForm1.casedes.$dirty && myForm1.casedes.$error.required" style="color:#A94442;">Case Description cannot be empty!</span>
                                                                     <span ng-show="myForm1.casedes.$error.pattern" style="color:#a94442;">Case Description cannot be empty!</span>
                                                                 </div>
-                                                            </ng-form>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -224,68 +227,15 @@
                                                         <div class="panel-heading" style="background-color: #357999; color: #fff; padding: 4px 2px 4px 2px;">
                                                             <b>Reporter Information</b></div>
                                                         <div class="panel-body" style="width: 100%;text-align:center; ">
-                                                            <div style="padding-left:420px; padding-bottom:10px;"><table border="2" style="width:100px;">
-                                                                <tr>
-                                                                    <td>
-                                                                        <b>S. No</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>File Name</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>File Category</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Notes</b>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <b>1</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Lab Report1.pdf</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Lab Report</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b> SomeNotes</b>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <b>2</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Pregnancy Test.pdf</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Lab Report</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b> SomeNotes</b>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <b>3</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Discharge Summary.pdf</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b>Lab Report</b>
-                                                                    </td>
-                                                                    <td>
-                                                                        <b> SomeNotes</b>
-                                                                    </td>
-                                                                </tr>
-                                                            </table></div>
+                                                            <div class="gridWidthWrapper">
+                                                                <div class="gridStyle" ng-grid="reporterGridOptions"></div>
+                                                            </div>
+                                                            <br>
                                                             <div>
-                                                                <input type="button" value="Add"  />&nbsp;&nbsp;
-                                                                <input type="button" value="Remove" />&nbsp;&nbsp;
-                                                                <input type="button" value="E-Mail"  /></div>
+                                                                <button class="btn btn-primary" ng-click="openModalwindow()">Add</button>&nbsp;&nbsp;
+                                                                <button class="btn btn-danger" ng-click="removeSelectedRows()">Remove</button>&nbsp;&nbsp;
+                                                                <input class="btn btn-info" type="button"
+                                                                       value="E-Mail"  /></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -293,7 +243,7 @@
                                             <div ng-show="SubjectID">
                                                 <div align="center">
                                                     <input type="button" value="Save as Draft" class="buttonCustG" ng-disabled="myForm1.$invalid"
-                                                           ng-click="save()" />
+                                                           ng-click="saveAsDraft()" />
                                                     <input type="button" value="Submit for Review" class="buttonCustG" ng-disabled="myForm1.$invalid"
                                                            ng-click="submit()" />
                                                 </div>

@@ -1,5 +1,5 @@
 
-angular.module("mportal", ["ui.router", "ngGrid"])
+angular.module("mportal", ["ui.router", "ngGrid", "ui.bootstrap"])
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise("home");
        $stateProvider.state("home", {
