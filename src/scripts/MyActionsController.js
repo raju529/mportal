@@ -119,23 +119,23 @@ angular.module("mportal")
         }, true);
         // pagination code ends
 
-
-        $('.mnggridStyle').trigger('resize');
-        $("#progress").modal();
-        if ($scope.loader != 1)
-            $("#progress").modal();
-        $("#progress").modal('hide');
-        $scope.myDraftDiv = true;
-        $scope.newCaseDiv = false;
-        $scope.myActionsDiv = false;
-        $scope.MyDraftEditMenu = false;
-        $scope.topheadermenu = true;
-        $scope.toggleMenuDiv = true;
+//
+//        $('.mnggridStyle').trigger('resize');
+//        $("#progress").modal();
+//        if ($scope.loader != 1)
+//            $("#progress").modal();
+//        $("#progress").modal('hide');
+//        $scope.myDraftDiv = true;
+//        $scope.newCaseDiv = false;
+//        $scope.myActionsDiv = false;
+//        $scope.MyDraftEditMenu = false;
+//        $scope.topheadermenu = true;
+//        $scope.toggleMenuDiv = true;
 
 
     //on clicking My Actions
     $scope.myActions = function () {
-        console.log("service")
+        console.log("service");
         //$('#togglemenu').removeClass('collapse in');
         //$('#togglemenu').addClass('collapse');
         var requestYmcMA = $http({
@@ -157,13 +157,6 @@ angular.module("mportal")
                 //$("#progress").modal('hide');
             });
         });
-
-        $scope.newCaseDiv = false;
-        $scope.myDraftDiv = false;
-        $scope.myActionsDiv = true;
-        $scope.MyDraftEditMenu = false;
-        $scope.topheadermenu = true;
-        $scope.toggleMenuDiv = true;
     };
         //You need to comment out $scope.myActions method
         $scope.myActions();
@@ -185,15 +178,15 @@ angular.module("mportal")
         $state.go("myActionsEdit");
     };
         //Deleted code. if you comment out $scope.myActions method u need to delete
-        $scope.CasesMA=[
-            {
-                app_number:511,study_label:11,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
-            },
-            {
-                app_number:512,study_label:12,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
-            },
-            {
-                app_number:513,study_label:13,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
-            }
-        ]
+//        $scope.CasesMA=[
+//            {
+//                app_number:511,study_label:11,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
+//            },
+//            {
+//                app_number:512,study_label:12,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
+//            },
+//            {
+//                app_number:513,study_label:13,country:"India",app_tas_title:"Return to state",app_del_previous_user:"valli"
+//            }
+//        ];
 } ]);
